@@ -10,16 +10,6 @@ export default function Formulario(props) {
   const [imagem, setImagem] = useState("");
   const [time, setTime] = useState("");
 
-  const times = [
-    "Programação",
-    "Front-End",
-    "Data Science",
-    "Devops",
-    "UX e Design",
-    "Mobile",
-    " Inovação e Gestão",
-  ];
-
   function handleFormSubmit(event) {
     event.preventDefault();
     props.aoColaboradorCadastrado({
@@ -53,7 +43,7 @@ export default function Formulario(props) {
             valor={imagem}
             aoAlterado={(imagem) => setImagem(imagem)}
           />
-          <ListaSuspensa label="Time" itens={times} valor={time} aoAlterado={valor => setTime(valor)}/>
+          <ListaSuspensa label="Time" itens={props.times} valor={time} aoAlterado={valor => setTime(valor)}/>
           <Botao>Criar card</Botao>
         </form>
       </section>

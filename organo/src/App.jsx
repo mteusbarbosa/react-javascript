@@ -47,7 +47,7 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario aoColaboradorCadastrado={handleFormSubmit} />
+      <Formulario aoColaboradorCadastrado={handleFormSubmit} times={times.map(time => time.nome)}/>
       {times.map((time, idx) => {
        return <Time nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} key={idx}/>
       })}
