@@ -2,8 +2,11 @@ import { useState } from "react";
 import Banner from "./components/Banner/Banner";
 import Formulario from "./components/Formulario/Formulario";
 import Time from "./components/Time/Time";
+import Rodape from "./components/Rodape/Rodape";
 
 function App() {
+  const [colaboradores, setColaboradores] = useState([]);
+
   const times = [
     {
       nome: "Front-End",
@@ -37,8 +40,6 @@ function App() {
     },
   ];
 
-  const [colaboradores, setColaboradores] = useState([]);
-
   function handleFormSubmit(event) {
     setColaboradores([...colaboradores, event]);
     console.log(colaboradores);
@@ -47,10 +48,22 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Formulario aoColaboradorCadastrado={handleFormSubmit} times={times.map(time => time.nome)}/>
+      <Formulario
+        aoColaboradorCadastrado={handleFormSubmit}
+        times={times.map((time) => time.nome)}
+      />
       {times.map((time, idx) => {
-       return <Time nome={time.nome} corPrimaria={time.corPrimaria} corSecundaria={time.corSecundaria} key={idx}/>
+        return (
+          <Time
+            nome={time.nome}
+            corPrimaria={time.corPrimaria}
+            corSecundaria={time.corSecundaria}
+            key={idx}
+            colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+          />
+        );
       })}
+      <Rodape/>
     </div>
   );
 }
